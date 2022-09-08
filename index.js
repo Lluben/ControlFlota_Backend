@@ -26,6 +26,8 @@ const app = express();
     console.error('Unable to connect to the database:', error);
 }*/
 app.use(cors());
+//para que se vea el index.html de la carpeta public
+app.use(express.static('public'));
 app.use(express.json());
 app.use('/api/usuarios',UsuarioRoute);
 app.use('/api/productos',ProductoRoute);
