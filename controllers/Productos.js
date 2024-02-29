@@ -6,23 +6,23 @@ import {Op} from "sequelize";
 export const getProductos = async (req, res) =>{
     try {
         let response;
-        if(req.role === "admin"){
+        if(req.Role === "admin"){
             response = await Producto.findAll({
-                attributes:['nombre','precio'],
+                attributes:['id','Nombre','Precio'],
                 include:[{
                     model: Empresa,
-                    attributes:['nombre','ruc']
+                    attributes:['Nombre','Ruc']
                 }]
             });
         }else{
             response = await Producto.findAll({
-                attributes:['nombre','precio'],
+                attributes:['id','Nombre','Precio'],
                 where:{
-                    empresaId: req.empresaId
+                    empresaId: req.body.empresaId
                 },
                 include:[{
                     model: Empresa,
-                    attributes:['nombre','ruc']
+                    attributes:['Nombre','Ruc']
                 }]
             });
         }

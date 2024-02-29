@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 export const getUsuarios = async(req, res) =>{
     try {
         const response = await Usuario.findAll({
-            attributes:['nombre','email','password','role','empresaId']
+            attributes:['Nombre','Email','Password','Role','empresaId']
         });
         res.status(200).json(response);
     } catch (error) {
@@ -28,6 +28,7 @@ export const getUsuario = async(req, res) =>{
 }
 
 export const createUsuario = async(req, res) =>{
+    console.log(req.body);
     const {Nombre,Email,Password,Role,empresaId} = req.body;
     //if(password !== confPassword) return res.status(400).json({msg: "Password dan Confirm Password tidak cocok"});
     //const hashPassword = await argon2.hash(password);
