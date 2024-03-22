@@ -44,12 +44,15 @@ app.use(session({
     }
 }));
 
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000'
-}));
+//app.use(cors({
+//   credentials: true,
+   //origin: ["http://192.168.0.113:3000","http://localhost:3005"]
+//   origin: 'http://localhost:3000'
+//}));
+app.use(cors());
 //para que se vea el index.html de la carpeta public
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static('public'));
 app.use(express.json());
 app.use('/api/usuarios',UsuarioRoute);
 app.use('/api/productos',ProductoRoute);
@@ -63,7 +66,7 @@ app.use('/api/auth',AuthRoute);
 //store.sync();
 
 
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 5000; 
 app.listen(PORT, ()=> {
     console.log(`Server up and running on port ${PORT}`);
 });
