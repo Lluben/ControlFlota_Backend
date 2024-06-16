@@ -51,7 +51,7 @@ app.use(session({
 //}));
 app.use(cors());
 //para que se vea el index.html de la carpeta public
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.static('public'));
 app.use(express.json());
 app.use('/api/usuarios',UsuarioRoute);

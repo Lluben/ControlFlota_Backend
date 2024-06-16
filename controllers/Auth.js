@@ -17,7 +17,7 @@ export const Login = async (req, res) =>{
     const Nombre = usuario.Nombre;
     const Email = usuario.Email;
     const Role = usuario.Role;
-    res.status(200).json({id, Nombre, Email, Role});
+    res.status(200).json({id, Nombre, Email, Role,token});
     //res.status(200).json({msg: "Logueado", token});
 }
 
