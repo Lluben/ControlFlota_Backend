@@ -6,7 +6,7 @@ export const getVentas = async (req, res) => {
        
         const { fecha } = req.params;
         console.log(fecha,'ffecha');
-        const response = await Ventas.findAll({
+        const response = await Venta.findAll({
             attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi'],
             where: {
                 FchEmi: {
@@ -25,7 +25,7 @@ export const getVenta = async(req, res) =>{
        
         const { fecha } = req.params;
         console.log(fecha,'ffecha');
-        const response = await Ventas.findAll({
+        const response = await Venta.findAll({
             attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi'],
             where: {
                 FchEmi: {
