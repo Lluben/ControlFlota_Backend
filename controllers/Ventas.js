@@ -4,17 +4,13 @@ import { Op } from "sequelize";
 export const getVentas = async (req, res) => {
     try {
        
-        const { fecha } = req.params;
-        console.log(fecha,'ffecha');
         const response = await Venta.findAll({
-            attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi'],
-            where: {
-                FchEmi: {
-                    [Op.eq]: new Date(fecha)
-                }
-            }
+            attributes:['empresaId','CodDoc','NroDoc','NroSerie','Total','FchEmi']
         });
+        
+        
         res.status(200).json(response);
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: error.message });
@@ -24,12 +20,21 @@ export const getVenta = async(req, res) =>{
     try {
        
         const { fecha } = req.params;
-        console.log(fecha,'ffecha');
+       
+        const initialDate = new Date(fecha);
+
+      
+        initialDate.setFullYear(2022, 8, 20); 
+        initialDate.setHours(5, 0, 0, 0);
+
+        const formattedDate = initialDate.toISOString();
+
+        console.log({formattedDate});
         const response = await Venta.findAll({
             attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi'],
             where: {
                 FchEmi: {
-                    [Op.eq]: new Date(fecha)
+                    [Op.eq]: formattedDate
                 }
             }
         });
