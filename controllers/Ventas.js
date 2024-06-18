@@ -1,13 +1,20 @@
 import Venta from "../models/VentaModel.js";
+import { Op } from "sequelize";
 
-export const getVentas = async (req, res) =>{
+export const getVentas = async (req, res) => {
     try {
-        const response = await Venta.findAll({
-            attributes:['empresaId','CodDoc','NroDoc','NroSerie','Total','FchEmi']
+        const { fecha } = req.params;
+        const response = await Ventas.findAll({
+            attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi'],
+            where: {
+                FchEmi: {
+                    [Op.eq]: new Date(fecha)
+                }
+            }
         });
         res.status(200).json(response);
     } catch (error) {
-        res.status(500).json({msg: error.message});
+        res.status(500).json({ msg: error.message });
     }
 };
 export const getVenta = (req, res) =>{
