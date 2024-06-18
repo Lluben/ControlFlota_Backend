@@ -10,8 +10,8 @@ import {validarJWT} from "../middleware/validar-jwt.js"
 import { verifyUser } from "../middleware/AuthUser.js";
 const router = express.Router();
 
-router.get('/:fecha', verifyUser, getVentas);
-router.get('/:id', validarJWT, getVenta);
+router.get('/', verifyUser, getVentas);
+router.get('/:fecha', validarJWT, getVenta);
 router.post('/', validarJWT, createVenta);
 router.patch('/:id', validarJWT, updateVenta);
 router.delete('/:id', validarJWT, deleteVenta);

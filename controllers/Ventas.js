@@ -3,7 +3,9 @@ import { Op } from "sequelize";
 
 export const getVentas = async (req, res) => {
     try {
+       
         const { fecha } = req.params;
+        console.log(fecha,'ffecha');
         const response = await Ventas.findAll({
             attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi'],
             where: {
@@ -14,11 +16,28 @@ export const getVentas = async (req, res) => {
         });
         res.status(200).json(response);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ msg: error.message });
     }
 };
-export const getVenta = (req, res) =>{
-    res.json({msg: "getVenta"})
+export const getVenta = async(req, res) =>{
+    try {
+       
+        const { fecha } = req.params;
+        console.log(fecha,'ffecha');
+        const response = await Ventas.findAll({
+            attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi'],
+            where: {
+                FchEmi: {
+                    [Op.eq]: new Date(fecha)
+                }
+            }
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: error.message });
+    }
 };
 export const createVenta = async (req, res) =>{
     const {empresaId,clienteId,CodDoc,NroDoc,NroSerie,Total,FchEmi} = req.body;
