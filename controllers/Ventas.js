@@ -3,12 +3,12 @@ import { Op } from "sequelize";
 
 export const getVentas = async (req, res) => {
     try {
-       
+
         const response = await Venta.findAll({
-            attributes:['empresaId','CodDoc','NroDoc','NroSerie','Total','FchEmi']
+            attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi']
         });
-        
-        
+
+
         res.status(200).json(response);
 
     } catch (error) {
@@ -16,25 +16,25 @@ export const getVentas = async (req, res) => {
         res.status(500).json({ msg: error.message });
     }
 };
-export const getVenta = async(req, res) =>{
+export const getVenta = async (req, res) => {
     try {
-       
         const { fecha } = req.params;
-       
-        const initialDate = new Date(fecha);
+        const date = new Date(fecha);
+        
+               
+        // Asegúrate de que la fecha está bien formateada sin horas
+        const startDate = new Date(date.setHours(0, 0, 0, 0));
+        const endDate = new Date(date.setHours(23, 59, 59, 999));
 
-      
-        initialDate.setFullYear(2022, 8, 20); 
-        initialDate.setHours(5, 0, 0, 0);
+        // Imprimir fechas para depuración
+        console.log("startDate:", startDate);
+        console.log("endDate:", endDate);
 
-        const formattedDate = initialDate.toISOString();
-
-        console.log({formattedDate});
         const response = await Venta.findAll({
             attributes: ['empresaId', 'CodDoc', 'NroDoc', 'NroSerie', 'Total', 'FchEmi'],
             where: {
                 FchEmi: {
-                    [Op.eq]: formattedDate
+                    [Op.between]: [startDate, endDate]
                 }
             }
         });
@@ -44,8 +44,8 @@ export const getVenta = async(req, res) =>{
         res.status(500).json({ msg: error.message });
     }
 };
-export const createVenta = async (req, res) =>{
-    const {empresaId,clienteId,CodDoc,NroDoc,NroSerie,Total,FchEmi} = req.body;
+export const createVenta = async (req, res) => {
+    const { empresaId, clienteId, CodDoc, NroDoc, NroSerie, Total, FchEmi } = req.body;
     try {
         const venta = await Venta.create({
             empresaId: empresaId,
@@ -56,14 +56,14 @@ export const createVenta = async (req, res) =>{
             Total: Total,
             FchEmi: FchEmi
         });
-        res.status(201).json({msg: "Venta creado con éxito !!!", idVenta: venta.id});
+        res.status(201).json({ msg: "Venta creado con éxito !!!", idVenta: venta.id });
     } catch (error) {
-        res.status(400).json({msg: error.message});
+        res.status(400).json({ msg: error.message });
     }
 };
-export const updateVenta = (req, res) =>{
-    res.json({msg: "updateVenta"})
+export const updateVenta = (req, res) => {
+    res.json({ msg: "updateVenta" })
 };
-export const deleteVenta = (req, res) =>{
-    res.json({msg: "borrar venta"})
+export const deleteVenta = (req, res) => {
+    res.json({ msg: "borrar venta" })
 };
