@@ -19,13 +19,6 @@ const Productos = db.define('producto',{
         validate:{
             notEmpty: true
         }
-    },
-    empresaId:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate:{
-            notEmpty: true
-        }
     }
 },{
     freezeTableName: true
