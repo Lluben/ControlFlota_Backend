@@ -9,7 +9,7 @@ export const getProductos = async (req, res) =>{
         if(req.Role === "admin"){
             console.log("Llegaste admin");
             response = await Producto.findAll({
-                attributes:['id','Nombre','Precio'],
+                attributes:['productoId','Nombre','Precio'],
                 include:[{
                     model: Empresa,
                     attributes:['Nombre','Ruc']
