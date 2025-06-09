@@ -4,6 +4,12 @@ import db from "../config/Database.js";
 const {DataTypes} = Sequelize;
 
 const Empresas = db.define('empresa',{
+    empresaId:{
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     Ruc:{
         type: DataTypes.STRING(11),
         allowNull: false,

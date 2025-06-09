@@ -5,6 +5,12 @@ import Empresas from "./EmpresaModel.js";
 const {DataTypes} = Sequelize;
 
 const Clientes = db.define('cliente',{
+    clienteId:{
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     TipoDoc:{
         type: DataTypes.CHAR(1),
         allowNull: false,

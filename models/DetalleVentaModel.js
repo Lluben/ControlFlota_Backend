@@ -6,20 +6,30 @@ import Ventas from "./VentaModel.js";
 const {DataTypes} = Sequelize;
 
 const DetalleVentas = db.define('detalleventa',{
+    empresaId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate:{
+            notEmpty: true
+        },
+        primaryKey: true
+    },
    CodDoc:{
         type: DataTypes.STRING(2),
         allowNull: false,
         validate:{
             notEmpty: true,
             len: [2, 2]
-        }
+        },
+        primaryKey: true
     },
     NroDoc:{
         type: DataTypes.INTEGER,
         allowNull: false,
         validate:{
             notEmpty: true
-        }
+        },
+        primaryKey: true
     },
     NroSerie:{
         type: DataTypes.STRING(4),
@@ -27,7 +37,8 @@ const DetalleVentas = db.define('detalleventa',{
         validate:{
             notEmpty: true,
             len: [1, 4]
-        }
+        },
+        primaryKey: true
     },
     Item:{
         type: DataTypes.SMALLINT,
@@ -58,8 +69,8 @@ const DetalleVentas = db.define('detalleventa',{
         }
     }
 },{
-    freezeTableName: true,
-    timestamps: false
+    freezeTableName: true
+    //timestamps: false
 });
 
 // Ventas.hasMany(DetalleVentas, {sourceKey: 'empresaId; CodDoc; NroDoc; NroSerie', foreignKey: 'fk_DetalleVP_Venta'});
@@ -71,10 +82,12 @@ const DetalleVentas = db.define('detalleventa',{
 // Ventas.hasMany(DetalleVentas, {foreignKey: 'NroSerie'});
 // DetalleVentas.belongsTo(Ventas, {foreignKey: 'NroSerie'});
 
-Ventas.hasMany(DetalleVentas, {foreignKey: 'ventaId'});
-DetalleVentas.belongsTo(Ventas, {foreignKey: 'ventaId'});
+//Ventas.hasMany(DetalleVentas, {foreignKey: 'ventaId'});
+//DetalleVentas.belongsTo(Ventas, {foreignKey: 'ventaId'});
 
-Productos.hasMany(DetalleVentas, {foreignKey: 'productoId'});
-DetalleVentas.belongsTo(Productos, {foreignKey: 'productoId'});
+//Productos.hasMany(DetalleVentas, {foreignKey: 'productoId'});
+//DetalleVentas.belongsTo(Productos, {foreignKey: 'productoId'});
+//Productos.hasMany(DetalleVentas, {foreignKey: 'productoId'});
+//DetalleVentas.belongsTo(Productos, {foreignKey: 'productoId'});
 
 export default DetalleVentas;
