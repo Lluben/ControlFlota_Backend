@@ -15,11 +15,11 @@ import AuthRoute from "./routes/AuthRoute.js";
 dotenv.config();
 
 const app = express();
-//const sessionStore = SequelizeStore(session.Store);
-/*
+const sessionStore = SequelizeStore(session.Store);
+
 const store = new sessionStore({
     db: db
-});*/
+});
 
 //Activar esta funcion para crear las tablas 
 //segun el modelo en la base de datos
@@ -34,7 +34,7 @@ try {
 } catch (error) {
     console.error('Unable to connect to the database:', error);
 }
-/*
+
 app.use(session({
     secret: process.env.SESS_SECRET,
     resave: true,
@@ -43,7 +43,7 @@ app.use(session({
     cookie: {
         secure: 'auto'
     }
-}));*/
+}));
 
 //app.use(cors({
 //   credentials: true,
