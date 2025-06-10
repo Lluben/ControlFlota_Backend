@@ -45,11 +45,11 @@ app.use(session({
     }
 }));
 
-//app.use(cors({
-//   credentials: true,
+app.use(cors({
+   credentials: true,
    //origin: ["http://192.168.0.113:3000","http://localhost:3005"]
-//   origin: 'http://localhost:3000'
-//}));
+   origin: 'http://54.160.158.246:5000'
+}));
 app.use(cors());
 //para que se vea el index.html de la carpeta public
 // app.use(express.static(path.join(__dirname, 'public')));
