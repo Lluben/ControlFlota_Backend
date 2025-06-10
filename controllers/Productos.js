@@ -6,8 +6,8 @@ import {Op} from "sequelize";
 export const getProductos = async (req, res) =>{
     try {
         let response;
+        //req.usuarioId y req.Role lo asigna en el middleware verifyUser
         if(req.Role === "admin"){
-            console.log("Llegaste admin");
             response = await Producto.findAll({
                 attributes:['productoId','Nombre','Precio'],
                 include:[{
@@ -16,7 +16,6 @@ export const getProductos = async (req, res) =>{
                 }]
             });
         }else{
-            console.log("Llegaste otros");
             response = await Producto.findAll({
                 attributes:['productoId','Nombre','Precio'],
                 where:{
@@ -43,8 +42,8 @@ export const getProducto = async(req, res) =>{
         });
         if(!producto) return res.status(404).json({msg: "Datos no encontrados"});
         let response;
-        if(req.role === "admin"){
-            console.log("Llegaste admin");
+        //req.usuarioId y req.role lo asigna en el middleware verifyUser
+        if(req.Role === "admin"){
             response = await Producto.findOne({
                 attributes:['productoId','nombre','precio'],
                 where:{
@@ -56,7 +55,6 @@ export const getProducto = async(req, res) =>{
                 }]
             });
         }else{
-            console.log("Llegaste aquí");
             response = await Producto.findOne({
                 attributes:['productoId','nombre','precio'],
                 where:{
@@ -70,7 +68,6 @@ export const getProducto = async(req, res) =>{
         }
         res.status(200).json(response);
     } catch (error) {
-        console.log("Llegaste con error");
         res.status(500).json({msg: error.message});
     }
 }
@@ -98,6 +95,7 @@ export const updateProducto = async(req, res) =>{
         });
         if(!producto) return res.status(404).json({msg: "Data tidak ditemukan"});
         const {nombre, precio} = req.body;
+        //req.usuarioId y req.role lo asigna en el middleware verifyUser
         if(req.role === "admin"){
             await Producto.update({nombre, precio},{
                 where:{
@@ -119,6 +117,7 @@ export const deleteProducto = async(req, res) =>{
             }
         });
         if(!producto) return res.status(404).json({msg: "Data tidak ditemukan"});
+        //req.usuarioId y req.role lo asigna en el middleware verifyUser
         const {nombre, precio} = req.body;
         if(req.role === "admin"){
             await Producto.destroy({
