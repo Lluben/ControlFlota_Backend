@@ -64,7 +64,7 @@ app.use('/api/detalleventas',DetalleVentaRoute);
 app.use('/api/auth',AuthRoute);
 
 //Activar esta funcion para crear la tabla Sessions en la base de datos
-//store.sync();
+store.sync();
 
 
 const PORT = process.env.PORT || 8080; 
