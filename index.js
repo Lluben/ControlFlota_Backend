@@ -21,12 +21,20 @@ const store = new sessionStore({
     db: db
 });
 
-const corsOptions = {
+/*const corsOptions = {
     origin: 'http://54.160.158.246',
     credentials: true,
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type',
+};*/
+
+const corsOptions = {
+    origin: '*',
+    credentials: false,
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type',
 };
+
 
 app.use(cors(corsOptions));
 //Activar esta funcion para crear las tablas 
