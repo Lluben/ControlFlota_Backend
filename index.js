@@ -23,6 +23,7 @@ const store = new sessionStore({
 
 const corsOptions = {
     origin: 'http://54.160.158.246',
+    credentials: true,
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type',
 };
