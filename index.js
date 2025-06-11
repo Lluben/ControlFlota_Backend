@@ -22,7 +22,7 @@ const store = new sessionStore({
 });
 
 const corsOptions = {
-    origin: 'http://54.160.158.246:5000/api/auth/login',
+    origin: 'http://54.160.158.246',
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type',
 };
