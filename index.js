@@ -50,7 +50,7 @@ app.use(session({
    //origin: ["http://192.168.0.113:3000","http://localhost:3005"]
 //   origin: 'http://54.160.158.246:5000'
 //}));
-app.use(cors());
+//app.use(cors());
 //para que se vea el index.html de la carpeta public
 // app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.static('public'));
@@ -64,7 +64,7 @@ app.use('/api/detalleventas',DetalleVentaRoute);
 app.use('/api/auth',AuthRoute);
 
 //Activar esta funcion para crear la tabla Sessions en la base de datos
-store.sync();
+//store.sync();
 
 
 const PORT = process.env.PORT || 8080; 
