@@ -29,9 +29,9 @@ const store = new sessionStore({
 };*/
 
 const corsOptions = {
-    origin: ['http://54.160.158.246','http://localhost:5000'],
+    origin: ['http://54.160.158.246','http://localhost'],
     credentials: true,
-    methods: 'GET,POST,PUT,DELETE',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type',
     optionsSuccessStatus: 200
 };
