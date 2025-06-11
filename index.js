@@ -21,6 +21,13 @@ const store = new sessionStore({
     db: db
 });
 
+const corsOptions = {
+    origin: 'http://54.160.158.246:5000/api/auth/login',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type',
+};
+
+app.use(cors(corsOptions));
 //Activar esta funcion para crear las tablas 
 //segun el modelo en la base de datos
 //force: true para borrar las tablas y volver a crearlas
